@@ -1,17 +1,39 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Router, navigate } from '@reach/router'
+import Cookies from 'js-cookie'
 
-import Homepage from './components/template/homepage'
-import './utils/GlobalStyle.css'
+/**
+ |--------------------------------------------------
+ | ROOT COMPONENT
+ |--------------------------------------------------
+ */
 
-export default function App() {
+/**
+ |--------------------------------------------------
+ | STYLE
+ |--------------------------------------------------
+ */
+import './style/App.css'
+import './style/Font.css'
+import MainLayout from './components/MainLayout'
+import TestLogin from './pages/TestLogin'
+import Redirect from './pages/Redirect'
+import ApplicationsTest from './pages/ApplicationsTest'
+/**
+ |--------------------------------------------------
+ | BASEUI SETUP
+ |--------------------------------------------------
+ */
+
+function App() {
+  useEffect(() => {}, [])
   return (
     <Router>
-      <Switch>
-        <Route exact path='/'>
-          <Homepage />
-        </Route>
-      </Switch>
+      <MainLayout path="/" component={TestLogin} />
+      <MainLayout path="/applications" component={ApplicationsTest} />
+      <MainLayout path="/redirect/:auth_code" component={Redirect} />
     </Router>
   )
 }
+
+export default App

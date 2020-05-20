@@ -1,0 +1,43 @@
+/* =============================================================== */
+/* TAILWINDCSS */
+/* =============================================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================================== */
+/* APP */
+/* =============================================================== */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.App {
+  font-family: 'Sarabun' !important;
+  background: #3399cc;
+  color: floralwhite;
+}
+
+.tags-input {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-height: 48px;
+  padding: 0 8px;
+  border: 1px solid rgb(214, 216, 218);
+  border-radius: 6px;
+}
+.tags-input:focus-within {
+  border: 1px solid #336699;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  height: 46px;
+  font-size: 14px;
+  padding: 4px 0 0 0;
+}
+.input:focus {
+  outline: transparent;
+}
