@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useContext, useEffect, useCallback, useState } from 'react'
 import { Formik, Form } from 'formik'
 import Cookie from 'js-cookie'
 import FormLogin from '../components/Login/FormLogin'
@@ -6,16 +6,19 @@ import CommonCard from '../components/Common/Card'
 import { login, continueLogin, fecthUserDataByAuthCode } from '../service/auth'
 import { getAuthFormData } from '../form/authHelper'
 import { navigate } from '@reach/router'
+import { storesContext } from '../context'
 import * as queryString from 'query-string'
 
 export default function ApplicationsTest(props) {
   const [user, setUser] = useState({})
+  const { authenticationStore, applicationStore } = useContext(storesContext)
+
   const fecthUserData = useCallback(
     async (data) => {
       const queryParams = queryString.parse(props.location.search)
       console.log(queryParams)
       try {
-        const response = await fecthUserDataByAuthCode(queryParams.code)
+        const response = await fecthUserDataByAuthCode(applicationStore.currentApp, queryParams.code)
         setUser(response.data)
       } catch (error) {
         alert(error)
