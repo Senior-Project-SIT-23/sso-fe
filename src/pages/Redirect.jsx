@@ -14,7 +14,7 @@ export default function Redirect(props) {
   }, [])
   return (
     <div className="flex flex-col flex-1 mx-auto max-w-screen-lg h-screen">
-      <h1>This is first prototpye login sso</h1>
+      <h1>This is first prototype login sso</h1>
       <CommonCard>
         <h1>Please feel free {authenticationStore.currentUser?.name_en}</h1>
         <p>We are redirecting to {applicationStore.currentApp?.name} </p>

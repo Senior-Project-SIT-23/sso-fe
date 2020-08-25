@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx'
 import Cookies from 'js-cookie'
-import { login, logout, fecthMe } from '../service/auth'
+import { login, logout, fetchMe } from '../service/auth'
 
 export class AuthenticationStore {
   @observable user = null
@@ -16,11 +16,11 @@ export class AuthenticationStore {
 
   @action async me() {
     try {
-      const { data } = await fecthMe()
+      const { data } = await fetchMe()
       this.setCurrentUser(data)
       return data
     } catch (error) {
-      this.romoveToken()
+      this.removeToken()
     }
   }
 
@@ -39,7 +39,7 @@ export class AuthenticationStore {
   @action async signOut() {
     await logout()
     this.user = null
-    this.romoveToken()
+    this.removeToken()
     window.location.reload()
   }
 
@@ -47,7 +47,7 @@ export class AuthenticationStore {
     Cookies.set(process.env.REACT_APP_ACCESS_TOKEN_NAME, token)
   }
 
-  @action romoveToken() {
+  @action removeToken() {
     Cookies.remove(process.env.REACT_APP_ACCESS_TOKEN_NAME)
   }
 }
