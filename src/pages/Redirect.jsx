@@ -8,9 +8,10 @@ export default function Redirect(props) {
   const { authenticationStore, applicationStore } = useContext(storesContext)
 
   useEffect(() => {
+    console.log(applicationStore.redirectURI)
     setTimeout(() => {
-      navigate(`${applicationStore.redirectURI}?code=${props.auth_code}`)
-    }, 4500)
+      window.location.href = `${applicationStore.redirectURI}?code=${props.auth_code}`
+    }, 2000)
   }, [])
   return (
     <div className="flex flex-col flex-1 mx-auto max-w-screen-lg h-screen">

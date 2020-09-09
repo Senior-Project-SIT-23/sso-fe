@@ -21,6 +21,7 @@ export class AuthenticationStore {
       return data
     } catch (error) {
       this.removeToken()
+      return false
     }
   }
 

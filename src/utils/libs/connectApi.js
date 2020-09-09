@@ -8,6 +8,7 @@ const createInstance = (headers) => {
       headers: {
         Authorization: `Bearer ${Cookie.get(process.env.REACT_APP_ACCESS_TOKEN_NAME)}`,
         'Content-Type': 'application/json',
+        accept: 'application/json',
       },
     })
   } else {
@@ -15,6 +16,7 @@ const createInstance = (headers) => {
       baseURL: process.env.REACT_APP_BE,
       headers: {
         'Content-Type': 'application/json',
+        accept: 'application/json',
       },
     })
   }

@@ -15,10 +15,10 @@ import Cookies from 'js-cookie'
  */
 import './style/App.css'
 import './style/Font.css'
-import MainLayout from './components/MainLayout'
-import TestLogin from './pages/TestLogin'
 import Redirect from './pages/Redirect'
 import ApplicationsTest from './pages/ApplicationsTest'
+import LDAP from './pages/LDAP'
+import MainLayout from './components/MainLayout'
 /**
  |--------------------------------------------------
  | BASEUI SETUP
@@ -29,9 +29,10 @@ function App() {
   useEffect(() => {}, [])
   return (
     <Router>
-      <MainLayout path="/" component={TestLogin} />
+      <MainLayout path="/manage" title={'Manage Service'} component={() => <></>} />
       <MainLayout path="/applications" component={ApplicationsTest} />
       <MainLayout path="/redirect/:auth_code" component={Redirect} />
+      <LDAP path="/login" />
     </Router>
   )
 }
