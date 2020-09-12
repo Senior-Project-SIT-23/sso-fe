@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useCallback, useState } from 'react'
 import { Formik, Form } from 'formik'
 import Cookie from 'js-cookie'
-import FormLogin from '../components/Login/FormLogin'
 import CommonCard from '../components/Common/Card'
 import { login, continueLogin, fetchUserDataByAuthCode } from '../service/auth'
 import { getAuthFormData } from '../form/authHelper'

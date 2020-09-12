@@ -104,11 +104,17 @@ const useStyles = makeStyles((theme) => ({
 
 const mainListItems = (
   <div>
-    <ListItem button onClick={() => navigate('/manage')}>
+    <ListItem button onClick={() => navigate('/manage/admin')}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Admin" />
+    </ListItem>
+    <ListItem button onClick={() => navigate('/manage/application')}>
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="Application" />
     </ListItem>
   </div>
 )
