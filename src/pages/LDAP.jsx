@@ -79,7 +79,7 @@ export default function LDAPLayout(props) {
         applicationStore.setCurrentApp(response.data)
       }
     } catch (error) {
-      applicationStore.setRedirectURI('/manage/application')
+      applicationStore.setRedirectURI('/manage/applications')
     }
     await authenticationStore.me()
     setIsPrefecth(false)

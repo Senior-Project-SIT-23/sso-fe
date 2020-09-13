@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontSize: 18,
   },
   pos: {
     marginBottom: 12,
@@ -27,7 +27,7 @@ export default function CommonCard(props) {
 
   return (
     <Card className={classes.root} variant="outlined">
-      {props.title && <CardHeader className="text-blue-600" title={props.title} />}
+      {props.title && <CardHeader className="text-blue-700 font-bold text-center" title={props.title} />}
       <CardContent>{props.children}</CardContent>
     </Card>
   )

@@ -63,7 +63,19 @@ export default function StickyHeadTable(props) {
                           wordBreak: 'break-word',
                         }}
                       >
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
+                        {column.format && typeof value === 'number' ? (
+                          column.format(value)
+                        ) : (
+                          <>
+                            {column.linkId ? (
+                              <a className="hover:text-blue-700" href={`/manage/applications/${row.id}`}>
+                                {value}
+                              </a>
+                            ) : (
+                              <> {value}</>
+                            )}
+                          </>
+                        )}
                         {column.action && (
                           <>
                             <IconButton onClick={() => props.handleAction(row.id, true)}>

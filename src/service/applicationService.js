@@ -17,6 +17,14 @@ export function apiUpdateStatus(id, data) {
   return apiManage.put(`applications/approve-reject/${id}`, data)
 }
 
+export function apiUpdateApplicationById(id, data) {
+  return apiManage.put(`/applications/${id}`, data)
+}
+
+export function apiFetchApplicationById(id) {
+  return apiManage.get(`/applications/${id}`)
+}
+
 export function apiFetchAllMyApplication() {
   return apiManage.get(`/my-applications`)
 }

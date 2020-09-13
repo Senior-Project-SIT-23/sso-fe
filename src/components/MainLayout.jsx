@@ -110,11 +110,11 @@ const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Admin" />
     </ListItem>
-    <ListItem button onClick={() => navigate('/manage/application')}>
+    <ListItem button onClick={() => navigate('/manage/applications')}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Application" />
+      <ListItemText primary="Applications" />
     </ListItem>
   </div>
 )

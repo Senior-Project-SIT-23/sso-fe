@@ -20,6 +20,7 @@ import ApplicationsTest from './pages/ApplicationsTest'
 import LDAP from './pages/LDAP'
 import AdminManage from './pages/AdminManage'
 import Applications from './pages/Applications'
+import ApplicationsDetail from './pages/ApplicationsDetail'
 import MainLayout from './components/MainLayout'
 /**
  |--------------------------------------------------
@@ -32,9 +33,10 @@ function App() {
   return (
     <Router>
       <MainLayout path="/manage/admin" title={'Manage Service'} component={AdminManage} />
-      <MainLayout path="/manage/application" title={'Application Service'} component={Applications} />
-      <MainLayout path="/applications" component={ApplicationsTest} />
+      <MainLayout path="/manage/applications" title={'Application Service'} component={Applications} />
+      <MainLayout path="/manage/applications/:app_id" component={ApplicationsDetail} />
       <MainLayout path="/redirect/:auth_code" component={Redirect} />
+      <MainLayout path="/applications" component={ApplicationsTest} />
       <LDAP path="/login" />
     </Router>
   )
