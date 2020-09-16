@@ -35,7 +35,7 @@ export default function Index(props) {
 
   return (
     <div>
-      <StickyHeadTable handleAction={handleDelete} rows={rows} columns={columns}></StickyHeadTable>
+      <StickyHeadTable {...props} handleAction={handleDelete} rows={rows} columns={columns}></StickyHeadTable>
     </div>
   )
 }

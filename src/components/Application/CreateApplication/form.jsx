@@ -54,7 +54,7 @@ export default function ApplicationForm(props) {
           <Grid item xs={12}>
             <FormControlLabel
               control={<Checkbox required value="allowExtraEmails" color="primary" />}
-              label="I want understand  how to integrate my application to sso service"
+              label="I understand how to integrate my application to sso service"
             />
           </Grid>
         </Grid>

@@ -20,9 +20,9 @@ import { ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
 import { navigate } from '@reach/router'
 import { storesContext } from '../context'
 import { useEffect } from 'react'
+import SnackBar from './Common/SnackBar'
 
 const drawerWidth = 240
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -163,7 +163,7 @@ export default function MainLayout2(props) {
             {props.title}
           </Typography>
           <IconButton edge="end" color="inherit">
-            <label>username</label>
+            <label>{authenticationStore.currentUser?.name_en}</label>
           </IconButton>
         </Toolbar>
       </AppBar>
