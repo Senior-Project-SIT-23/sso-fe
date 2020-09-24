@@ -21,7 +21,7 @@ export default function Index(props) {
   }
 
   const columns = [
-    { id: 'name', label: 'App Name', width: 90, linkId: true },
+    { id: 'name', label: 'App Name', width: 90, linkId: true, link: '/manage/applications/' },
     { id: 'detail', label: 'Detail', width: 200 },
     { id: 'status', label: 'status', width: 50 },
     {

@@ -31,7 +31,6 @@ export default function ApplicationDetail(props) {
       const data = {
         name: e.target.name.value,
         detail: e.target.detail.value,
-        policy: e.target.policy.value,
       }
       await applicationDetail.updateApplication(props.app_id, getCreateApplicationFormData(data))
       fetchApplication()
@@ -98,22 +97,6 @@ export default function ApplicationDetail(props) {
                     id="detail"
                     label="Detail"
                     name="detail"
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    multiline
-                    rows={4}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    disabled={!isEdit}
-                    onChange={(e) => setApplication({ ...application, policy: e.target.value })}
-                    value={application.policy}
-                    id="policy"
-                    label="Policy"
-                    name="policy"
                   />
                 </Grid>
               </Grid>

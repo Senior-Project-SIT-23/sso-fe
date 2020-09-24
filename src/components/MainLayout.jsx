@@ -104,11 +104,17 @@ const useStyles = makeStyles((theme) => ({
 
 const mainListItems = (
   <div>
-    <ListItem button onClick={() => navigate('/manage/admin')}>
+    <ListItem button onClick={() => navigate('/manage/application')}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Admin" />
+      <ListItemText primary="App Requested" />
+    </ListItem>
+    <ListItem button onClick={() => navigate('/manage/role')}>
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="Role Manage" />
     </ListItem>
     <ListItem button onClick={() => navigate('/manage/applications')}>
       <ListItemIcon>

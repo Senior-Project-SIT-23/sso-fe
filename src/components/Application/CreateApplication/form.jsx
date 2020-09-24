@@ -49,9 +49,6 @@ export default function ApplicationForm(props) {
             <TextField multiline rows={4} variant="outlined" required fullWidth id="detail" label="Detail" name="detail" />
           </Grid>
           <Grid item xs={12}>
-            <TextField multiline rows={4} variant="outlined" required fullWidth id="policy" label="Policy" name="policy" />
-          </Grid>
-          <Grid item xs={12}>
             <FormControlLabel
               control={<Checkbox required value="allowExtraEmails" color="primary" />}
               label="I understand how to integrate my application to sso service"

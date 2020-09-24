@@ -8,15 +8,16 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
-import { IconButton } from '@material-ui/core'
+import { IconButton, Tooltip } from '@material-ui/core'
 import { Done, Close } from '@material-ui/icons'
-
+import { SupervisorAccount, Person } from '@material-ui/icons'
 const useStyles = makeStyles({
   root: {
     width: '100%',
   },
   container: {
-    maxHeight: 450,
+    minHeight: 380,
+    maxHeight: 480,
   },
 })
 
@@ -32,6 +33,35 @@ export default function StickyHeadTable(props) {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value)
     setPage(0)
+  }
+
+  const showRow = (column, row, value) => {
+    if (column.linkId) {
+      return (
+        <a className="hover:text-blue-700" href={`${column.link}${row.id}`}>
+          {value}
+        </a>
+      )
+    } else if (column.id === 'roles') {
+      return value.map((data) => {
+        if (data.name === 'Admin')
+          return (
+            <Tooltip title={data.name}>
+              <SupervisorAccount />
+            </Tooltip>
+          )
+        if (data.name === 'User')
+          return (
+            <Tooltip title={data.name}>
+              <Person />
+            </Tooltip>
+          )
+      })
+    } else if (column.format && typeof value === 'number') {
+      return <>{column.format(value)}</>
+    } else {
+      return <> {value}</>
+    }
   }
 
   return (
@@ -63,19 +93,7 @@ export default function StickyHeadTable(props) {
                           wordBreak: 'break-word',
                         }}
                       >
-                        {column.format && typeof value === 'number' ? (
-                          column.format(value)
-                        ) : (
-                          <>
-                            {column.linkId ? (
-                              <a className="hover:text-blue-700" href={`/manage/applications/${row.id}`}>
-                                {value}
-                              </a>
-                            ) : (
-                              <> {value}</>
-                            )}
-                          </>
-                        )}
+                        {showRow(column, row, value)}
                         {column.action && (
                           <>
                             <IconButton onClick={() => props.handleAction(row.id, true)}>

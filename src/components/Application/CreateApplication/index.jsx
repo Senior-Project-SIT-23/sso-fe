@@ -12,7 +12,6 @@ export default function Index(props) {
     const data = {
       name: e.target.name.value,
       detail: e.target.detail.value,
-      policy: e.target.policy.value,
     }
     try {
       await applicationStore.createApplication(getCreateApplicationFormData(data))

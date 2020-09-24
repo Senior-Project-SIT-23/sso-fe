@@ -32,7 +32,8 @@ function App() {
   useEffect(() => {}, [])
   return (
     <Router>
-      <MainLayout path="/manage/admin" title={'Manage Service'} component={AdminManage} />
+      <MainLayout path="/manage/application" title={'Manage Service'} index={0} component={AdminManage} />
+      <MainLayout path="/manage/role" title={'Manage Service'} index={1} component={AdminManage} />
       <MainLayout path="/manage/applications" title={'Application Service'} component={Applications} />
       <MainLayout path="/manage/applications/:app_id" component={ApplicationsDetail} />
       <MainLayout path="/redirect/:auth_code" component={Redirect} />

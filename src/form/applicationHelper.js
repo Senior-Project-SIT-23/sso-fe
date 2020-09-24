@@ -15,7 +15,6 @@ export function getCreateApplicationFormData(values) {
 
   const data = {
     name: _.get(values, 'name'),
-    policy: _.get(values, 'policy'),
     detail: _.get(values, 'detail'),
   }
   formData.append('data', JSON.stringify(data))
