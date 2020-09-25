@@ -80,7 +80,7 @@ export default function Index(props) {
           <List {...props} setOpenShowDetail={setOpenShowDetail}></List>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <CreateApplication {...props}></CreateApplication>
+          <CreateApplication handleChange={handleChange} {...props}></CreateApplication>
         </TabPanel>
       </SwipeableViews>
     </div>

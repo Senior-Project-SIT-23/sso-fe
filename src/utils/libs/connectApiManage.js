@@ -50,6 +50,7 @@ export default {
     createInstance(headers)
       .request({
         url: path,
+        data: body,
         method: 'DELETE',
       })
       .then(handleResponse)

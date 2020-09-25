@@ -9,6 +9,8 @@ import List from '@material-ui/core/List'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
+import { Person, SupervisorAccount } from '@material-ui/icons'
+
 import Badge from '@material-ui/core/Badge'
 import Container from '@material-ui/core/Container'
 import Link from '@material-ui/core/Link'
@@ -104,15 +106,15 @@ const useStyles = makeStyles((theme) => ({
 
 const mainListItems = (
   <div>
-    <ListItem button onClick={() => navigate('/manage/application')}>
+    <ListItem button onClick={() => navigate('/manage/requested/applications')}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="App Requested" />
     </ListItem>
-    <ListItem button onClick={() => navigate('/manage/role')}>
+    <ListItem button onClick={() => navigate('/manage/users')}>
       <ListItemIcon>
-        <DashboardIcon />
+        <SupervisorAccount />
       </ListItemIcon>
       <ListItemText primary="Role Manage" />
     </ListItem>

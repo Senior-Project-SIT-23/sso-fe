@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react'
 import { getCreateApplicationFormData } from '../../../form/applicationHelper'
 import { applicationStoreStoresContext } from '../context'
 import ApplicationForm from './form'
-import SnackBar from '../../Common/SnackBar'
 
 export default function Index(props) {
   const { applicationStore } = useContext(applicationStoreStoresContext)
@@ -16,6 +15,7 @@ export default function Index(props) {
     try {
       await applicationStore.createApplication(getCreateApplicationFormData(data))
       props.setSnackBar({ open: true, message: 'Created Application', status: 'success' })
+      props.handleChange(0, 0)
     } catch (error) {
       props.setSnackBar({ open: true, message: 'Created Application Fail', status: 'error' })
     }

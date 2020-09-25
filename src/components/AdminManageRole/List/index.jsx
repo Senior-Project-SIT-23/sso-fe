@@ -16,7 +16,7 @@ export default function Index(props) {
   }, [fetchAllUsersRole])
 
   const columns = [
-    { id: 'user_id', label: 'ID', width: 90, linkId: true, link: '/manage/applications/' },
+    { id: 'user_id', label: 'ID', width: 90, linkId: true, link: '/manage/users/' },
     { id: 'name_th', label: 'NameTH', width: 200 },
     { id: 'name_en', label: 'NameEN', width: 50 },
     {

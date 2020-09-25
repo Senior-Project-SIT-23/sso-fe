@@ -38,7 +38,7 @@ export default function StickyHeadTable(props) {
   const showRow = (column, row, value) => {
     if (column.linkId) {
       return (
-        <a className="hover:text-blue-700" href={`${column.link}${row.id}`}>
+        <a className="hover:text-blue-700" href={`${column.link}${row.id || row.user_id}`}>
           {value}
         </a>
       )

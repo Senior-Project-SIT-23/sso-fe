@@ -22,6 +22,7 @@ import AdminManage from './pages/AdminManage'
 import Applications from './pages/Applications'
 import ApplicationsDetail from './pages/ApplicationsDetail'
 import MainLayout from './components/MainLayout'
+import User from './pages/User'
 /**
  |--------------------------------------------------
  | BASEUI SETUP
@@ -32,8 +33,9 @@ function App() {
   useEffect(() => {}, [])
   return (
     <Router>
-      <MainLayout path="/manage/application" title={'Manage Service'} index={0} component={AdminManage} />
-      <MainLayout path="/manage/role" title={'Manage Service'} index={1} component={AdminManage} />
+      <MainLayout path="/manage/requested/applications" title={'Manage Service'} index={0} component={AdminManage} />
+      <MainLayout path="/manage/users" title={'Manage Service'} index={1} component={AdminManage} />
+      <MainLayout path="/manage/users/:user_id" title={'Manage Service'} index={1} component={User} />
       <MainLayout path="/manage/applications" title={'Application Service'} component={Applications} />
       <MainLayout path="/manage/applications/:app_id" component={ApplicationsDetail} />
       <MainLayout path="/redirect/:auth_code" component={Redirect} />

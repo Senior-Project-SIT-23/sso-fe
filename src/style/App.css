@@ -41,3 +41,8 @@
 .input:focus {
   outline: transparent;
 }
+
+.bg-blue-700-text-white-impotent {
+  color: white !important;
+  background: #336699 !important;
+}

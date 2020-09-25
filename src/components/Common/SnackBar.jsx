@@ -7,7 +7,7 @@ export default function SnackBar(props) {
     props.setSnackBar({ ...props.snackBar, open: false })
   }
   return (
-    <Snackbar className="z-50" open={props.snackBar.open} autoHideDuration={6000} onClick={handleClose} onClose={() => handleClose}>
+    <Snackbar className="z-50" open={props.snackBar.open} autoHideDuration={4000} onClick={handleClose} onClose={() => handleClose}>
       <Alert onClose={() => handleClose} onClick={handleClose} severity={props.snackBar?.status}>
         {props.snackBar?.message}
       </Alert>
