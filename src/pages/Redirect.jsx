@@ -9,9 +9,7 @@ export default function Redirect(props) {
 
   useEffect(() => {
     console.log(applicationStore.redirectURI)
-    setTimeout(() => {
-      window.location.href = `${applicationStore.redirectURI}?code=${props.auth_code}`
-    }, 2000)
+    window.location.href = `${applicationStore.redirectURI}?code=${props.auth_code}`
   }, [])
   return (
     <div className="flex flex-col flex-1 mx-auto max-w-screen-lg h-screen">

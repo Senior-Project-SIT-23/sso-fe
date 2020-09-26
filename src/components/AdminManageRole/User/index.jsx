@@ -1,11 +1,9 @@
 import { Paper } from '@material-ui/core'
-import { Person, SupervisorAccount } from '@material-ui/icons'
+import { AssignmentTurnedIn, Person, SupervisorAccount } from '@material-ui/icons'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import CommonCard from '../../Common/Card'
 import Loading from '../../Common/Loading'
 import { userRoleStoreStoreStoresContext } from '../context'
-import { apiAddUsersRole, apiRemoveUsersRole } from '../../../service/userService'
-import { getUserRoleFormData } from '../../../form/userHelper'
 import SnackBar from '../../Common/SnackBar'
 
 export default function Index(prop) {
@@ -49,6 +47,13 @@ export default function Index(prop) {
           <h3 className="font-sarabun font-bold">{role}</h3>
         </>
       )
+    if (role === 'Approver')
+      return (
+        <>
+          <AssignmentTurnedIn style={{ fontSize: '4.5rem' }} />
+          <h3 className="font-sarabun font-bold">{role}</h3>
+        </>
+      )
   }
   if (!isFetch) {
     return (
@@ -72,7 +77,7 @@ export default function Index(prop) {
               <Paper
                 className={`mx-3 cursor-pointer hover:bg-blue-700 hover:text-white ${hasRole ? 'bg-blue-700-text-white-impotent' : ''}`}
                 key={role.role_id}
-                onClick={() => handleChangeRole(hasRole, role.role_id)}
+                onClick={() => (role.name === 'User' ? '' : handleChangeRole(hasRole, role.role_id))}
                 style={{ width: '125px', height: '125px' }}
                 elevation={1}
               >

@@ -1,4 +1,5 @@
-import React, { useContext, useCallback } from 'react'
+import _ from 'lodash'
+import React, { useContext, useCallback, useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -9,7 +10,7 @@ import List from '@material-ui/core/List'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import { Person, SupervisorAccount } from '@material-ui/icons'
+import { AssignmentTurnedIn, ExitToApp, Person, SupervisorAccount } from '@material-ui/icons'
 
 import Badge from '@material-ui/core/Badge'
 import Container from '@material-ui/core/Container'
@@ -18,7 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import { Dashboard as DashboardIcon } from '@material-ui/icons'
-import { ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
+import { ListItem, ListItemText, ListItemIcon, Tooltip } from '@material-ui/core'
 import { navigate } from '@reach/router'
 import { storesContext } from '../context'
 import { useEffect } from 'react'
@@ -104,34 +105,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const mainListItems = (
-  <div>
-    <ListItem button onClick={() => navigate('/manage/requested/applications')}>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="App Requested" />
-    </ListItem>
-    <ListItem button onClick={() => navigate('/manage/users')}>
-      <ListItemIcon>
-        <SupervisorAccount />
-      </ListItemIcon>
-      <ListItemText primary="Role Manage" />
-    </ListItem>
-    <ListItem button onClick={() => navigate('/manage/applications')}>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Applications" />
-    </ListItem>
-  </div>
-)
-
 export default function MainLayout2(props) {
   const { authenticationStore } = useContext(storesContext)
   const { component: Child } = props
   const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
+
+  const [open, setOpen] = useState(true)
+  const [user, setUser] = useState(authenticationStore.currentUser)
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -147,11 +127,59 @@ export default function MainLayout2(props) {
     } catch (error) {
       window.location.href = '/login'
     }
+    setUser(authenticationStore.currentUser)
   }, [authenticationStore])
 
   useEffect(() => {
     fetchMe()
   }, [fetchMe])
+
+  const checkRole = () => {
+    if (user?.roles) {
+      const list = []
+      for (let index = 0; index < user.roles.length; index++) {
+        if (user.roles[index].name === 'Admin') {
+          list.push(
+            <>
+              <ListItem button onClick={() => navigate('/manage/users')}>
+                <ListItemIcon>
+                  <SupervisorAccount />
+                </ListItemIcon>
+                <ListItemText primary="Role Manage" />
+              </ListItem>
+              <ListItem button onClick={() => navigate('/manage/requested/applications')}>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="App Requested" />
+              </ListItem>
+            </>
+          )
+          break
+        } else if (user.roles[index].name === 'Approver') {
+          list.push(
+            <ListItem button onClick={() => navigate('/manage/requested/applications')}>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="App Requested" />
+            </ListItem>
+          )
+          break
+        }
+      }
+      list.push(
+        <ListItem button onClick={() => navigate('/manage/applications')}>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="Applications" />
+        </ListItem>
+      )
+      return <div>{_.map(list, (item) => item)}</div>
+    }
+    return <div></div>
+  }
 
   return (
     <div className={classes.root}>
@@ -171,7 +199,38 @@ export default function MainLayout2(props) {
             {props.title}
           </Typography>
           <IconButton edge="end" color="inherit">
-            <label>{authenticationStore.currentUser?.name_en}</label>
+            <Tooltip
+              title={
+                <>
+                  <Typography color="inherit"> ID : {user?.user_id}</Typography>
+                  <Typography color="inherit"> NameEn : {user?.name_en}</Typography>
+                  <Typography color="inherit"> NameTh : {user?.name_th || '-'}</Typography>
+                  {user?.roles &&
+                    _.map(user.roles, (role) => {
+                      if (role.name === 'Admin')
+                        return (
+                          <Tooltip title={role.name}>
+                            <SupervisorAccount />
+                          </Tooltip>
+                        )
+                      if (role.name === 'User')
+                        return (
+                          <Tooltip title={role.name}>
+                            <Person />
+                          </Tooltip>
+                        )
+                      if (role.name === 'Approver')
+                        return (
+                          <Tooltip title={role.name}>
+                            <AssignmentTurnedIn />
+                          </Tooltip>
+                        )
+                    })}
+                </>
+              }
+            >
+              <label>{user?.name_en}</label>
+            </Tooltip>
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -188,13 +247,13 @@ export default function MainLayout2(props) {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>{checkRole()}</List>
         <Divider />
         <div className="mt-auto mb-3">
           <Divider />
           <ListItem button onClick={() => authenticationStore.signOut()}>
             <ListItemIcon>
-              <DashboardIcon />
+              <ExitToApp />
             </ListItemIcon>
             <ListItemText primary="Sign out" />
           </ListItem>

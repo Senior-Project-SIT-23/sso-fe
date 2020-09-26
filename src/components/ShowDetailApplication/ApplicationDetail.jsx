@@ -79,10 +79,10 @@ export default function ApplicationDetail(props) {
             <form className={classes.form} onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <TextField variant="outlined" fullWidth label="Client ID" disabled value={application.secret_id} autoFocus />
+                  <TextField variant="outlined" fullWidth label="Client ID" disabled value={application.app_id} autoFocus />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField variant="outlined" fullWidth label="Secret ID" disabled value={application.app_id} autoFocus />
+                  <TextField variant="outlined" fullWidth label="Secret ID" disabled value={application.secret_id} autoFocus />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField

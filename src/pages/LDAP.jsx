@@ -76,7 +76,10 @@ export default function LDAPLayout(props) {
       let response = await applicationStore.checkClientId(queryParams.client_id)
       if (response.status === 200) {
         applicationStore.setRedirectURI('/manage/applications')
-        if (queryParams.redirect_uri) {
+        if (
+          queryParams.redirect_uri &&
+          (queryParams.redirect_uri.search('https://www.') === 0 || queryParams.redirect_uri.search('http://www.') === 0)
+        ) {
           applicationStore.setRedirectURI(queryParams.redirect_uri)
         }
         applicationStore.setCurrentApp(response.data)
@@ -101,7 +104,8 @@ export default function LDAPLayout(props) {
     const formdata = getAuthFormData(data)
     try {
       const response = await authenticationStore.signIn(formdata)
-      navigate(`/redirect/${response.data.auth_code}`)
+      console.log(applicationStore.redirectURI)
+      window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}`
     } catch (error) {
       alert(error)
     }
@@ -110,7 +114,7 @@ export default function LDAPLayout(props) {
   const handleContinueLogin = async (data) => {
     try {
       const response = await continueLogin()
-      navigate(`/redirect/${response.data.auth_code}`)
+      window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}`
     } catch (error) {
       alert(error)
     }
@@ -151,7 +155,7 @@ export default function LDAPLayout(props) {
               ) : (
                 <>
                   <Button fullWidth variant="contained" color="primary" className={classes.submit} onClick={() => handleContinueLogin()}>
-                    Continue this account
+                    Continue this account {authenticationStore.currentUser.name_en}
                   </Button>
                   <div onClick={() => authenticationStore.signOut()} className="my-1 text-center mx-auto">
                     <label className=" hover:text-blue-800 cursor-pointer">logout</label>

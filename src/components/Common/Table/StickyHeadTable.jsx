@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
 import { IconButton, Tooltip } from '@material-ui/core'
-import { Done, Close } from '@material-ui/icons'
+import { Done, Close, AssignmentTurnedIn } from '@material-ui/icons'
 import { SupervisorAccount, Person } from '@material-ui/icons'
 const useStyles = makeStyles({
   root: {
@@ -54,6 +54,12 @@ export default function StickyHeadTable(props) {
           return (
             <Tooltip title={data.name}>
               <Person />
+            </Tooltip>
+          )
+        if (data.name === 'Approver')
+          return (
+            <Tooltip title={data.name}>
+              <AssignmentTurnedIn />
             </Tooltip>
           )
       })
