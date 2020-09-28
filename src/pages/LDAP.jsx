@@ -76,10 +76,7 @@ export default function LDAPLayout(props) {
       let response = await applicationStore.checkClientId(queryParams.client_id)
       if (response.status === 200) {
         applicationStore.setRedirectURI('/manage/applications')
-        if (
-          queryParams.redirect_uri &&
-          (queryParams.redirect_uri.search('https://www.') === 0 || queryParams.redirect_uri.search('http://www.') === 0)
-        ) {
+        if (queryParams.redirect_uri && (queryParams.redirect_uri.search('https://') === 0 || queryParams.redirect_uri.search('http://') === 0)) {
           applicationStore.setRedirectURI(queryParams.redirect_uri)
         }
         applicationStore.setCurrentApp(response.data)
