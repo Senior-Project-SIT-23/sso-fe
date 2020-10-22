@@ -21,8 +21,8 @@ export class ApplicationStore {
     this.uri = uri
   }
 
-  @action async checkClientId(client_id) {
-    const response = await apiCheckClientId(client_id)
+  @action async checkClientId(client_id, redirect_uri) {
+    const response = await apiCheckClientId(client_id, redirect_uri)
     return response
   }
 }

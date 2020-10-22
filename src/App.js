@@ -15,8 +15,6 @@ import Cookies from 'js-cookie'
  */
 import './style/App.css'
 import './style/Font.css'
-import Redirect from './pages/Redirect'
-import ApplicationsTest from './pages/ApplicationsTest'
 import LDAP from './pages/LDAP'
 import AdminManage from './pages/AdminManage'
 import Applications from './pages/Applications'
@@ -38,8 +36,6 @@ function App() {
       <MainLayout path="/manage/users/:user_id" title={'Manage Service'} index={1} component={User} />
       <MainLayout path="/manage/applications" title={'Application Service'} component={Applications} />
       <MainLayout path="/manage/applications/:app_id" component={ApplicationsDetail} />
-      <MainLayout path="/redirect/:auth_code" component={Redirect} />
-      <MainLayout path="/applications" component={ApplicationsTest} />
       <LDAP path="/login" />
     </Router>
   )

@@ -31,6 +31,7 @@ export default function ApplicationDetail(props) {
       const data = {
         name: e.target.name.value,
         detail: e.target.detail.value,
+        redirect_uri: e.target.redirect_uri.value,
       }
       await applicationDetail.updateApplication(props.app_id, getCreateApplicationFormData(data))
       fetchApplication()
@@ -97,6 +98,18 @@ export default function ApplicationDetail(props) {
                     id="detail"
                     label="Detail"
                     name="detail"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    disabled={!isEdit}
+                    variant="outlined"
+                    fullWidth
+                    label="Redirect URI"
+                    onChange={(e) => setApplication({ ...application, app_config: { ...application.app_config, redirect_uri: e.target.value } })}
+                    value={application?.app_config?.redirect_uri}
+                    id="redirect_uri"
+                    name="redirect_uri"
                   />
                 </Grid>
               </Grid>

@@ -264,6 +264,7 @@ export default function MainLayout2(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          <SnackBar></SnackBar>
           <Child {...props} />
         </Container>
       </main>

@@ -20,6 +20,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { CircularProgress } from '@material-ui/core'
 import Loading from '../components/Common/Loading'
+import SnackBar from '../components/Common/SnackBar'
 
 function Copyright() {
   return (
@@ -69,24 +70,32 @@ export default function LDAPLayout(props) {
 
   const { authenticationStore, applicationStore } = useContext(storesContext)
   const [isPrefecth, setIsPrefecth] = useState(true)
+  const [showCode, setShowCode] = useState(false)
+  const [snackBar, setSnackBar] = useState({ message: '', open: false, status: 'success' })
+  const queryParams = queryString.parse(props.location.search)
 
   const checkClientId = useCallback(async () => {
-    const queryParams = queryString.parse(props.location.search)
-    try {
-      let response = await applicationStore.checkClientId(queryParams.client_id)
-      if (response.status === 200) {
-        applicationStore.setRedirectURI('/manage/applications')
-        if (queryParams.redirect_uri && (queryParams.redirect_uri.search('https://') === 0 || queryParams.redirect_uri.search('http://') === 0)) {
-          applicationStore.setRedirectURI(queryParams.redirect_uri)
+    applicationStore.setRedirectURI('/manage/applications')
+    if (queryParams.response_type === 'code') {
+      if (queryParams.state && queryParams.state !== '') {
+        try {
+          let response = await applicationStore.checkClientId(queryParams.client_id, queryParams.redirect_uri)
+          if (response.status === 200) {
+            if (queryParams.redirect_uri && (queryParams.redirect_uri.search('https://') === 0 || queryParams.redirect_uri.search('http://') === 0)) {
+              applicationStore.setRedirectURI(queryParams.redirect_uri)
+              setShowCode(true)
+            }
+          }
+        } catch (error) {
+          setSnackBar({ message: error.response.data.message, open: true, status: 'error' })
         }
-        applicationStore.setCurrentApp(response.data)
+      } else {
+        setSnackBar({ message: 'Can Not Find param state', open: true, status: 'warning' })
       }
-    } catch (error) {
-      applicationStore.setRedirectURI('/manage/applications')
     }
     await authenticationStore.me()
     setIsPrefecth(false)
-  }, [applicationStore, authenticationStore, props.location.search])
+  }, [applicationStore, authenticationStore, queryParams.client_id, queryParams.redirect_uri, queryParams.response_type, queryParams.state])
 
   useEffect(() => {
     checkClientId()
@@ -101,8 +110,11 @@ export default function LDAPLayout(props) {
     const formdata = getAuthFormData(data)
     try {
       const response = await authenticationStore.signIn(formdata)
-      console.log(applicationStore.redirectURI)
-      window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}`
+      if (showCode) {
+        window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}?state=${queryParams.state}`
+      } else {
+        window.location.href = `${applicationStore.redirectURI}`
+      }
     } catch (error) {
       alert(error)
     }
@@ -111,7 +123,11 @@ export default function LDAPLayout(props) {
   const handleContinueLogin = async (data) => {
     try {
       const response = await continueLogin()
-      window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}`
+      if (showCode) {
+        window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}`
+      } else {
+        window.location.href = `${applicationStore.redirectURI}`
+      }
     } catch (error) {
       alert(error)
     }
@@ -122,6 +138,7 @@ export default function LDAPLayout(props) {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
+          <SnackBar snackBar={snackBar} setSnackBar={setSnackBar} />
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>

@@ -1,8 +1,8 @@
 import apiGateWay from '.././utils/libs/connectApi'
 import apiManage from '.././utils/libs/connectApiManage'
 
-export function checkClientId(client_id) {
-  return apiGateWay.get(`/applications/client/${client_id}`)
+export function checkClientId(client_id, redirect_uri) {
+  return apiGateWay.get(`/applications/client/${client_id}?redirect_uri=${redirect_uri || ''}`)
 }
 
 export function apiCreateApplication(data) {

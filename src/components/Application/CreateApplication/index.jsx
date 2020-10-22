@@ -11,6 +11,7 @@ export default function Index(props) {
     const data = {
       name: e.target.name.value,
       detail: e.target.detail.value,
+      redirect_uri: e.target.redirect_uri.value,
     }
     try {
       await applicationStore.createApplication(getCreateApplicationFormData(data))

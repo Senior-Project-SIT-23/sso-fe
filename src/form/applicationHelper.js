@@ -16,6 +16,7 @@ export function getCreateApplicationFormData(values) {
   const data = {
     name: _.get(values, 'name'),
     detail: _.get(values, 'detail'),
+    redirect_uri: _.get(values, 'redirect_uri'),
   }
   formData.append('data', JSON.stringify(data))
 
