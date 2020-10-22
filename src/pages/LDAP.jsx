@@ -106,6 +106,7 @@ export default function LDAPLayout(props) {
     const data = {
       username: e.target.username.value,
       password: e.target.password.value,
+      is_remember: e.target.is_remember.checked,
     }
     const formdata = getAuthFormData(data)
     try {
@@ -161,7 +162,7 @@ export default function LDAPLayout(props) {
                     id="password"
                     autoComplete="current-password"
                   />
-                  <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                  <FormControlLabel control={<Checkbox name="is_remember" id="is_remember" color="primary" />} label="Remember me" />
                   <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     Sign In
                   </Button>

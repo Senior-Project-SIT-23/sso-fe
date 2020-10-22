@@ -5,6 +5,7 @@ export function getAuthFormData(values) {
 
   formData.append('username', _.get(values, 'username'))
   formData.append('password', _.get(values, 'password'))
+  formData.append('is_remember', _.get(values, 'is_remember'))
 
   return formData
 }
