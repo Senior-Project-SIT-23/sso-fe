@@ -70,6 +70,7 @@ export default function LDAPLayout(props) {
 
   const { authenticationStore, applicationStore } = useContext(storesContext)
   const [isPrefecth, setIsPrefecth] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(false)
   const [showCode, setShowCode] = useState(false)
   const [snackBar, setSnackBar] = useState({ message: '', open: false, status: 'success' })
   const queryParams = queryString.parse(props.location.search)
@@ -87,9 +88,11 @@ export default function LDAPLayout(props) {
             }
           }
         } catch (error) {
+          setIsDisabled(true)
           setSnackBar({ message: error.response.data.message, open: true, status: 'error' })
         }
       } else {
+        setIsDisabled(true)
         setSnackBar({ message: 'Can Not Find param state', open: true, status: 'warning' })
       }
     }
@@ -163,13 +166,20 @@ export default function LDAPLayout(props) {
                     autoComplete="current-password"
                   />
                   <FormControlLabel control={<Checkbox name="is_remember" id="is_remember" color="primary" />} label="Remember me" />
-                  <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                  <Button disabled={isDisabled} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     Sign In
                   </Button>
                 </form>
               ) : (
                 <>
-                  <Button fullWidth variant="contained" color="primary" className={classes.submit} onClick={() => handleContinueLogin()}>
+                  <Button
+                    disabled={isDisabled}
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={() => handleContinueLogin()}
+                  >
                     Continue this account {authenticationStore.currentUser.name_en}
                   </Button>
                   <div onClick={() => authenticationStore.signOut()} className="my-1 text-center mx-auto">
