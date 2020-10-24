@@ -125,7 +125,7 @@ export default function LDAPLayout(props) {
     try {
       const response = await continueLogin()
       if (showCode) {
-        window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}`
+        window.location.href = `${applicationStore.redirectURI}?code=${response.data.auth_code}?state=${queryParams.state}`
       } else {
         window.location.href = `${applicationStore.redirectURI}`
       }
