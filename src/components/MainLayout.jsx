@@ -10,7 +10,7 @@ import List from '@material-ui/core/List'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import { AssignmentTurnedIn, ExitToApp, Person, SupervisorAccount } from '@material-ui/icons'
+import { AssignmentTurnedIn, Description, ExitToApp, Person, SupervisorAccount } from '@material-ui/icons'
 
 import Badge from '@material-ui/core/Badge'
 import Container from '@material-ui/core/Container'
@@ -251,6 +251,12 @@ export default function MainLayout2(props) {
         <Divider />
         <div className="mt-auto mb-3">
           <Divider />
+          <ListItem button onClick={() => navigate('https://documenter.getpostman.com/view/11099771/TVCZbXHk')}>
+            <ListItemIcon>
+              <Description />
+            </ListItemIcon>
+            <ListItemText primary="Doc" />
+          </ListItem>
           <ListItem button onClick={() => authenticationStore.signOut()}>
             <ListItemIcon>
               <ExitToApp />

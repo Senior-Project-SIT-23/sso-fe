@@ -8,7 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
-import { IconButton, Tooltip } from '@material-ui/core'
+import { Chip, IconButton, Tooltip } from '@material-ui/core'
 import { Done, Close, AssignmentTurnedIn } from '@material-ui/icons'
 import { SupervisorAccount, Person } from '@material-ui/icons'
 const useStyles = makeStyles({
@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     maxHeight: 480,
   },
 })
+const color = { approve: 'primary', reject: 'secondary', pending: 'default' }
 
 export default function StickyHeadTable(props) {
   const classes = useStyles()
@@ -65,6 +66,8 @@ export default function StickyHeadTable(props) {
       })
     } else if (column.format && typeof value === 'number') {
       return <>{column.format(value)}</>
+    } else if (column.chip) {
+      return <Chip className="my-3" color={color[row.status]} variant="outlined" label={row.status} />
     } else {
       return <> {value}</>
     }
