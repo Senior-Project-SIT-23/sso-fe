@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import TransitionsModal from '../Common/TransitionsModal'
 import ApplicationDetail from './ApplicationDetail'
-import ApplicationPage from './ApplicationPage'
+import ApplicationPage from './CustomApplication'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props

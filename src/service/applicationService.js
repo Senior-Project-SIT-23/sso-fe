@@ -9,6 +9,10 @@ export function apiCreateApplication(data) {
   return apiManage.post(`/applications`, data)
 }
 
+export function apiUpdateApplicationPage(id, data) {
+  return apiManage.post(`/applications/${id}/pages`, data)
+}
+
 export function apiDeleteApplication(id) {
   return apiManage.delete(`/applications/${id}`)
 }

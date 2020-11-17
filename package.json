@@ -23,6 +23,7 @@
     "moment": "^2.26.0",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
+    "react-color": "^2.19.3",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "react-icons": "^3.10.0",

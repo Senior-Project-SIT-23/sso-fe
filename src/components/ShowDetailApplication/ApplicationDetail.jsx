@@ -33,7 +33,10 @@ export default function ApplicationDetail(props) {
         detail: e.target.detail.value,
         redirect_uri: e.target.redirect_uri.value,
       }
-      await applicationDetail.updateApplication(props.app_id, getCreateApplicationFormData(data))
+      const response = await applicationDetail.updateApplication(props.app_id, getCreateApplicationFormData(data))
+      if (response.status === 200) {
+        props.setSnackBar({ open: true, message: 'Update Application', status: 'success' })
+      }
       fetchApplication()
     } else {
       setIsEdit(true)
