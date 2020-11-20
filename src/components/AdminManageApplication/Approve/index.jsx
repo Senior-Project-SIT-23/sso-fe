@@ -23,11 +23,11 @@ export default function Index(props) {
   const columns = [
     { id: 'name', label: 'App Name', width: 90, linkId: true, link: '/manage/applications/' },
     { id: 'detail', label: 'Detail', width: 200 },
-    { id: 'user_name_en', label: 'Request Name', width: 50 },
+    { id: 'user_name_en', label: 'Request Name', width: 170 },
     {
       id: 'actions',
       label: 'Actions',
-      minWidth: 170,
+      minWidth: 90,
       align: 'center',
       action: true,
     },

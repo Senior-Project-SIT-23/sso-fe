@@ -16,9 +16,9 @@ export default function Index(props) {
   }, [fetchAllUsersRole])
 
   const columns = [
-    { id: 'user_id', label: 'ID', width: 90, linkId: true, link: '/manage/users/' },
+    { id: 'user_id', label: 'ID', width: 100, linkId: true, link: '/manage/users/' },
     { id: 'name_th', label: 'NameTH', width: 200 },
-    { id: 'name_en', label: 'NameEN', width: 50 },
+    { id: 'name_en', label: 'NameEN', width: 170 },
     {
       id: 'email',
       label: 'Email',
@@ -28,13 +28,13 @@ export default function Index(props) {
     {
       id: 'user_type',
       label: 'Type',
-      minWidth: 170,
+      minWidth: 50,
       align: 'center',
     },
     {
       id: 'roles',
       label: 'Roles',
-      minWidth: 170,
+      minWidth: 50,
       align: 'center',
     },
   ]

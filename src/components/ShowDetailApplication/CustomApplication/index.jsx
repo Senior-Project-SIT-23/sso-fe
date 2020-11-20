@@ -68,22 +68,24 @@ export default function ApplicationPage(props) {
   const fetchApplication = useCallback(async () => {
     await applicationDetail.fetchAllApplication(props.app_id)
     setApplication(applicationDetail.application)
-    setCustomPage({
-      ...customPage,
-      rightBGColor: applicationDetail.application.app_pages.BACKGROUND_COLOR,
-      backgroundImage: applicationDetail.application.app_pages.IMAGE_URL,
-      iconColor: applicationDetail.application.app_pages.ICON_COLOR,
-      btnColor: applicationDetail.application.app_pages.BUTTON_COLOR,
-      btnHover: applicationDetail.application.app_pages.BUTTON_HOVER_COLOR,
-      btnHoverColorText: applicationDetail.application.app_pages.BUTTON_HOVER_TEXT_COLOR,
-      btnColorText: applicationDetail.application.app_pages.BUTTON_TEXT_COLOR,
-    })
-    setCustomText({
-      open: false,
-      label: applicationDetail.application.app_pages.LABEL_WORD,
-      singIn: applicationDetail.application.app_pages.SIGN_IN_WORD,
-      color: applicationDetail.application.app_pages.TEXT_COLOR,
-    })
+    if (applicationDetail.application.app_pages.length != 0) {
+      setCustomPage({
+        ...customPage,
+        rightBGColor: applicationDetail.application.app_pages.BACKGROUND_COLOR,
+        backgroundImage: applicationDetail.application.app_pages.IMAGE_URL,
+        iconColor: applicationDetail.application.app_pages.ICON_COLOR,
+        btnColor: applicationDetail.application.app_pages.BUTTON_COLOR,
+        btnHover: applicationDetail.application.app_pages.BUTTON_HOVER_COLOR,
+        btnHoverColorText: applicationDetail.application.app_pages.BUTTON_HOVER_TEXT_COLOR,
+        btnColorText: applicationDetail.application.app_pages.BUTTON_TEXT_COLOR,
+      })
+      setCustomText({
+        open: false,
+        label: applicationDetail.application.app_pages.LABEL_WORD,
+        singIn: applicationDetail.application.app_pages.SIGN_IN_WORD,
+        color: applicationDetail.application.app_pages.TEXT_COLOR,
+      })
+    }
     setIsFetch(false)
   }, [applicationDetail, props.app_id])
 
