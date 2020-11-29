@@ -164,6 +164,7 @@ export default function ApplicationPage(props) {
                     value={customPage.backgroundImage}
                     autoFocus
                   />
+                  <label className="text-gray-700 opacity-25">Match Suggest Pixels width and hight 1155 x 1080 </label>
                 </Grid>
                 {/* color section */}
 

@@ -21,6 +21,7 @@ import Applications from './pages/Applications'
 import ApplicationsDetail from './pages/ApplicationsDetail'
 import MainLayout from './components/MainLayout'
 import User from './pages/User'
+import Landing from './pages/Landing'
 /**
  |--------------------------------------------------
  | BASEUI SETUP
@@ -37,6 +38,7 @@ function App() {
       <MainLayout path="/manage/applications" title={'Application Service'} component={Applications} />
       <MainLayout path="/manage/applications/:app_id" component={ApplicationsDetail} />
       <LDAP path="/login" />
+      <Landing path="/" />
     </Router>
   )
 }
