@@ -27,7 +27,7 @@ export default function Index(props) {
     {
       id: 'actions',
       label: 'Actions',
-      minWidth: 170,
+      minWidth: 50,
       align: 'center',
       delete: true,
     },

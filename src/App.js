@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react'
 import { Router, navigate } from '@reach/router'
-import Cookies from 'js-cookie'
 
 /**
  |--------------------------------------------------
  | ROOT COMPONENT
  |--------------------------------------------------
  */
+import LDAP from './pages/LDAP'
+import AdminManage from './pages/AdminManage'
+import Applications from './pages/Applications'
+import ApplicationsDetail from './pages/ApplicationsDetail'
+import MainLayout from './components/MainLayout'
+import User from './pages/User'
+import Landing from './pages/Landing'
 
 /**
  |--------------------------------------------------
@@ -15,18 +21,6 @@ import Cookies from 'js-cookie'
  */
 import './style/App.css'
 import './style/Font.css'
-import LDAP from './pages/LDAP'
-import AdminManage from './pages/AdminManage'
-import Applications from './pages/Applications'
-import ApplicationsDetail from './pages/ApplicationsDetail'
-import MainLayout from './components/MainLayout'
-import User from './pages/User'
-import Landing from './pages/Landing'
-/**
- |--------------------------------------------------
- | BASEUI SETUP
- |--------------------------------------------------
- */
 
 function App() {
   useEffect(() => {}, [])

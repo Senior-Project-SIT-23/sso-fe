@@ -16,8 +16,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    minHeight: 380,
-    maxHeight: 480,
+    maxHeight: 680,
   },
 })
 const color = { approve: 'primary', reject: 'secondary', pending: 'default' }
