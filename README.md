@@ -7,7 +7,7 @@
 ---------------------------
 
 Affter you clone the project
-`cd sso-fe`
+``sh cd sso-fe``
 
 --For first time--
 ### `npm install` or `yarn`
